@@ -13,7 +13,7 @@ export default function App() {
     });
 
     socket.on('public', msg => {
-      setMessages(prev => [...prev, msg]);
+      setMessages(prev => [msg, ...prev]);
     });
 
     // ensures we disconnect to avoid memory leaks

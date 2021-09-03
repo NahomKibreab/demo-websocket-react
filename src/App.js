@@ -36,6 +36,7 @@ export default function App() {
       {messages.length > 0 &&
         <button onClick={clear}>Clear</button>
       }
+      
       <ul>
         {list}
       </ul>

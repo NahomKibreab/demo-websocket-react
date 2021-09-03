@@ -5,6 +5,10 @@ import io from "socket.io-client";
 export default function App() {
   const [messages, setMessages] = useState([]);
 
+  const clear = function () {
+    setMessages([]);
+  };
+
   useEffect(() => {
     const socket = io("/");
 
@@ -29,7 +33,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-
+      {messages.length > 0 && <button onClick={clear}>Clear</button>}
       <ul>
         {list}
       </ul>

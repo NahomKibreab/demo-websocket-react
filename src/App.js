@@ -7,20 +7,24 @@ export default function App() {
 
   useEffect(() => {
     const socket = io("/");
-    
+
     socket.on('connect', event => {
       console.log("connected");
     });
 
     socket.on('public', msg => {
-      setMessages([msg, ...messages]);
+      setMessages(prev => [...prev, msg]);
     });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
   }, []);
 
-  const list = messages.map((msg, i) => <li key={i}>{msg}</li>);
+  console.log(messages);
+
+  const list = messages.map((msg, i) => {
+    return <li key={i}>{msg}</li>;
+  });
 
   return (
     <div className="App">

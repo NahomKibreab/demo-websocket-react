@@ -33,7 +33,9 @@ export default function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-      {messages.length > 0 && <button onClick={clear}>Clear</button>}
+      {messages.length > 0 &&
+        <button onClick={clear}>Clear</button>
+      }
       <ul>
         {list}
       </ul>

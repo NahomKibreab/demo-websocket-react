@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Socket.io Demo</h1>
+      <h2>Socket.io Demo</h2>
       
       {messages.length > 0 &&
         <button onClick={clear}>Clear</button>

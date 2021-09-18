@@ -5,7 +5,7 @@ import io from "socket.io-client";
 export default function App() {
   const [messages, setMessages] = useState([]);
 
-  const clear = function () {
+  const clear = function() {
     setMessages([]);
   };
 
@@ -16,14 +16,14 @@ export default function App() {
     });
 
     socket.on('public', msg => {
-      setMessages(prev => [msg, ...prev]);
+      setMessages(prev => ["Broadcast: " + msg, ...prev]);
     });
 
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
   }, []);
 
-  console.log(messages);
+  // console.log(messages);
 
   const list = messages.map((msg, i) => {
     return <li key={i}>{msg}</li>;
@@ -32,7 +32,7 @@ export default function App() {
   return (
     <div className="App">
       <h2>Socket.io Demo</h2>
-      
+
       {messages.length > 0 &&
         <button onClick={clear}>Clear</button>
       }

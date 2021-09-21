@@ -3,11 +3,24 @@ import { useEffect, useState } from 'react';
 import io from "socket.io-client";
 
 export default function App() {
+  const [socket, setSocket] = useState();
   const [notify, setNotify] = useState("");
   const [status, setStatus] = useState({});
+  const [name, setName] = useState("");
+
+  const onNameChange = function(event) {
+    setName(event.target.value);
+  };
+
+  const onRegister = function() {
+    if (socket && name) {
+      socket.emit('register', name);
+    }
+  };
 
   useEffect(() => {
     const socket = io("/");
+    setSocket(socket);
     socket.on('connect', event => {
       console.log("connected");
     });
@@ -28,11 +41,12 @@ export default function App() {
     <div className="App">
       <h1>Web Sockets React</h1>
       <h4>
-        <div><span class="connected">{status.connected}</span> clients connected</div>
-        <div class="notify">{notify}</div>
+        <div><span>{status.connected}</span> clients connected</div>
+        <div><span >{status.active}</span> clients active</div>
+        <div className="notify">{notify}</div>
       </h4>
-      <div><input id="name" placeholder="Name" /></div>
-      <button id="active">Register</button>
+      <div><input value={name} onChange={onNameChange} placeholder="Name" /></div>
+      <button onClick={onRegister}>Register</button>
       <button id="offline">Offline</button>
     </div>
   );

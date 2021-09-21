@@ -6,10 +6,6 @@ export default function App() {
   const [notify, setNotify] = useState("");
   const [status, setStatus] = useState({});
 
-  const clear = function() {
-    setMessages([]);
-  };
-
   useEffect(() => {
     const socket = io("/");
     socket.on('connect', event => {
@@ -27,12 +23,6 @@ export default function App() {
     // ensures we disconnect to avoid memory leaks
     return () => socket.disconnect();
   }, []);
-
-  // console.log(messages);
-
-  // const list = status.map((msg, i) => {
-  //   return <li key={i}>{msg}</li>;
-  // });
 
   return (
     <div className="App">

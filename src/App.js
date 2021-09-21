@@ -21,6 +21,7 @@ export default function App() {
   useEffect(() => {
     const socket = io("/");
     setSocket(socket);
+
     socket.on('connect', event => {
       console.log("connected");
     });

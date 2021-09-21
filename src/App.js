@@ -4,10 +4,6 @@ import io from "socket.io-client";
 
 export default function App() {
 
-  const clear = function() {
-    setMessages([]);
-  };
-
   useEffect(() => {
     const socket = io("/");
     socket.on('connect', event => {

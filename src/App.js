@@ -4,7 +4,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Web Sockets React</h1>
+      <h1>Clean React App</h1>
     </div>
   );
 }

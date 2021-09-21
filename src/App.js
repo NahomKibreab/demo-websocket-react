@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import io from "socket.io-client";
 
 export default function App() {
-  const [notify, setNotify] = useState("");
-  const [status, setStatus] = useState({});
 
   const clear = function() {
     setMessages([]);

@@ -16,15 +16,7 @@ export default function App() {
       console.log("connected");
     });
 
-    socket.on('status', msg => {
-      setStatus(prev => msg);
-    });
-
-    socket.on('notify', msg => {
-      setNotify(prev => msg);
-    });
-
-    // ensures we disconnect to avoid memory leaks
+    // disconnect to avoid memory leaks
     return () => socket.disconnect();
   }, []);
 

@@ -31,6 +31,9 @@ export default function App() {
         <div><span class="connected">{status.connected}</span> clients connected</div>
         <div class="notify">{notify}</div>
       </h4>
+      <div><input id="name" placeholder="Name" /></div>
+      <button id="active">Register</button>
+      <button id="offline">Offline</button>
     </div>
   );
 }

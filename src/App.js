@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import io from "socket.io-client";
 
 export default function App() {
-  const [messages, setMessages] = useState([]);
+  const [notify, setNotify] = useState("");
+  const [status, setStatus] = useState({});
 
   const clear = function() {
     setMessages([]);
@@ -15,8 +16,12 @@ export default function App() {
       console.log("connected");
     });
 
-    socket.on('public', msg => {
-      setMessages(prev => ["Broadcast: " + msg, ...prev]);
+    socket.on('status', msg => {
+      setStatus(prev => msg);
+    });
+
+    socket.on('notify', msg => {
+      setNotify(prev => msg);
     });
 
     // ensures we disconnect to avoid memory leaks
@@ -25,22 +30,17 @@ export default function App() {
 
   // console.log(messages);
 
-  const list = messages.map((msg, i) => {
-    return <li key={i}>{msg}</li>;
-  });
+  // const list = status.map((msg, i) => {
+  //   return <li key={i}>{msg}</li>;
+  // });
 
   return (
     <div className="App">
-      <h2>Socket.io Demo</h2>
-
-      {messages.length > 0 &&
-        <button onClick={clear}>Clear</button>
-      }
-
-      <ul>
-        {list}
-      </ul>
-
+      <h1>Web Sockets React</h1>
+      <h4>
+        <div><span class="connected">{status.connected}</span> clients connected</div>
+        <div class="notify">{notify}</div>
+      </h4>
     </div>
   );
 }

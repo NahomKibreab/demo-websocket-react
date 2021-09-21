@@ -1,5 +1,6 @@
 .App {
   margin: 1em;
+  font-family: Arial;
 }
 
 h2 {
@@ -36,6 +37,11 @@ li:hover a {
   color: white;
 }
 
-span {
+/* span {
   color: red;
+} */
+
+.notify {
+  color: green;
+  font-family: monospace;
 }
